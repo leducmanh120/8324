@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>. . . . . . . . / . . .</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div type="button" class="click" onclick="toggleId()"></div>
+      Bấm vào hoa điii
+    </div>
+    <input type="checkbox" class="input" id="input" hidden />
+    <div class="container">
+      <p class="text-not-mobile">Mở bằng máy tính đêe 💻</p>
+      <label for="input" id="wrap-img">
+        <img src="./bouquet.png" alt="" class="img" id="not-click" />
+      </label>
+    </div>
+
+    <label for="input" class="overlay"></label>
+    <div class="modal">
+      <img src="./giphy.gif" alt="" />
+      <p>
+        Nhân 8/3 chúc m tinh ranh như chó sói 🐺, hay nói như chó nhà, thật thà
+        như chó Nhật 🐶, sức bật như chó khoang, dữ như chó đẻ, khỏe như chó
+        rừng và tưng bừng như chó thiến :v (nguồn Xuân Bắc - Vân Dung :v)<br />
+        chúc m 1 buổi tối thật vui và bình an trong cuộc sống nhá 🤞
+      </p>
+    </div>
+
+    <p class="note">
+      bấm vào đơn giản nếu bấm được thì bấm nếu k đc bạn nonn 😏
+    </p>
+
+    <script>
+      const notClick = document.getElementById("not-click");
+      let difficultyLevel = 10000;
+      let isIdRemoved = false;
+      let currentPosition = { left: 0, top: 0 };
+
+      function toggleId() {
+        if (isIdRemoved) {
+          notClick.setAttribute("id", "not-click");
+          notClick.style.position = "absolute";
+          notClick.style.left = `${currentPosition.left}px`;
+          notClick.style.top = `${currentPosition.top}px`;
+        } else {
+          notClick.removeAttribute("id");
+          notClick.style.position = "absolute";
+          currentPosition = {
+            left: notClick.offsetLeft,
+            top: notClick.offsetTop,
+          };
+        }
+        isIdRemoved = !isIdRemoved;
+      }
+
+      notClick.addEventListener("mouseover", () => {
+        if (!isIdRemoved) {
+          const maxX = window.innerWidth - notClick.clientWidth;
+          const maxY = window.innerHeight - notClick.clientHeight;
+
+          const mouseX = event.clientX;
+          const mouseY = event.clientY;
+
+          const elemX = notClick.offsetLeft + notClick.clientWidth / 2;
+          const elemY = notClick.offsetTop + notClick.clientHeight / 2;
+
+          const deltaX = mouseX - elemX;
+          const deltaY = mouseY - elemY;
+
+          const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+          const directionX = deltaX / distance;
+          const directionY = deltaY / distance;
+
+          const newX = notClick.offsetLeft + difficultyLevel * directionX;
+          const newY = notClick.offsetTop + difficultyLevel * directionY;
+
+          currentPosition = {
+            left: Math.max(0, Math.min(newX, maxX)),
+            top: Math.max(0, Math.min(newY, maxY)),
+          };
+
+          notClick.style.left = `${currentPosition.left}px`;
+          notClick.style.top = `${currentPosition.top}px`;
+        }
+      });
+    </script>
+  </body>
+</html>

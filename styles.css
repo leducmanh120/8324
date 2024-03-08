@@ -1,0 +1,120 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Styles */
+body {
+  font-family: "PT Serif", serif;
+}
+
+.topbar {
+  padding-block: 8px;
+  color: #fff;
+  background: #a2ac6f;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.click {
+  width: 48px;
+  height: 48px;
+  background: #abb478;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+}
+
+.text-not-mobile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.img {
+  width: 168px;
+  cursor: pointer;
+  box-sizing: content-box;
+  padding: 8px;
+}
+
+#not-click {
+  z-index: 2;
+  position: absolute;
+  transform: all 0.1s;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  translate: -120% 0;
+  background: #fff;
+  position: fixed;
+  inset: 10%;
+  z-index: 3;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.modal img {
+  width: 420px;
+}
+
+.modal p {
+  font-family: "Mali", sans-serif;
+  padding-left: 20px;
+  font-size: 22px;
+}
+
+.input:checked ~ .overlay {
+  display: block;
+}
+
+.input:checked ~ .modal {
+  translate: initial;
+  opacity: 1;
+}
+
+.note {
+  font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Reponsive */
+@media (max-width: 1023.98px) {
+  body {
+    padding-inline: 15px;
+    color: #fff;
+    background: #a2ac6f;
+  }
+  .text-not-mobile {
+    display: block;
+  }
+  .topbar,
+  .img,
+  .modal,
+  .note {
+    display: none;
+  }
+}
